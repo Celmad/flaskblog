@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from flaskblog import app, db, bcrypt
-from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -88,6 +88,7 @@ def save_photo(form_photo):
     image.save(photo_path)
     return photo_filename
 
+
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
@@ -96,7 +97,7 @@ def account():
         if form.profile_photo.data:
             photo_file = save_photo(form.profile_photo.data)
             current_user.photo_profile = photo_file
-        current_user.username = form.username.data)
+        current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
         flash('Your profile has been updated', 'success')
@@ -108,4 +109,13 @@ def account():
     photo_profile = url_for('static', filename='profile_photos/' + current_user.photo_profile)
     return render_template('account.html', title='Account', photo_profile=photo_profile, form=form)
 
+
+@app.route("/post/new", methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_post.html', title='New Post', form=form)
 
