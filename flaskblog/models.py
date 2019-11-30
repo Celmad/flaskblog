@@ -1,4 +1,5 @@
 from datetime import datetime
+from flask import current_app
 from flaskblog import db, login_manager
 from flask_login import UserMixin
 
@@ -27,3 +28,6 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"User('{self.title}', '{self.date_posted}')"
+
+
+# serializer will use current_app instead of app
