@@ -20,6 +20,9 @@
     {% else %}
     <title>Flask Blog</title>
     {% endif %}
+
+    <!-- Font Awesome icons -->
+    <script src="https://kit.fontawesome.com/c70ddc5cf7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -34,18 +37,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-                        <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
+                        <a class="nav-item nav-link" href="{{ url_for('main.home') }}"><i class="fas fa-home"></i> Home</a>
+                        <a class="nav-item nav-link" href="{{ url_for('main.about') }}"><i class="fas fa-info"></i> About</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if current_user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
-                        <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
-                        <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                        <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}"><i class="fas fa-pen"></i> New Post</a>
+                        <a class="nav-item nav-link" href="{{ url_for('users.account') }}"><i class="fas fa-user"></i> Account</a>
+                        <a class="nav-item nav-link" href="{{ url_for('users.logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         {% else %}
-                        <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                        <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
+                        <a class="nav-item nav-link" href="{{ url_for('users.login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a class="nav-item nav-link" href="{{ url_for('users.register') }}"><i class="fas fa-user-plus"></i> Register</a>
                         {% endif %}
                     </div>
                 </div>
