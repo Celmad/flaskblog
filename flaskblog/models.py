@@ -43,6 +43,3 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"User('{self.title}', '{self.date_posted}')"
-
-
-# serializer will use current_app instead of app

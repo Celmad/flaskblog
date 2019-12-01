@@ -24,7 +24,7 @@ def register():
         # Give feedback to the user
         flash(f'Your account has been created {form.username.data}! You are now able to log in', 'success') # second argument is category, passing a bootstrap 4 class
         return redirect(url_for('users.login')) # passing name of function, not of route
-    return render_template('register.html', title='Register', form=form) # last argument is to pass it to pass data to the template
+    return render_template('users/register.html', title='Register', form=form) # last argument is to pass it to pass data to the template
 
 
 @users.route("/login", methods=['GET', 'POST'])
@@ -41,7 +41,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
         else:
             flash(f'Unsuccessful. Email or password might be incorrect. Please, try again.', 'danger ')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('users/login.html', title='Login', form=form)
 
 
 @users.route("/logout")
@@ -69,7 +69,7 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     photo_profile = url_for('static', filename='profile_photos/' + current_user.photo_profile)
-    return render_template('account.html', title='Account', photo_profile=photo_profile, form=form)
+    return render_template('users/account.html', title='Account', photo_profile=photo_profile, form=form)
 
 
 @users.route("/user/<string:username>")
@@ -79,7 +79,7 @@ def user_posts(username):
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
-    return render_template('user_posts.html', posts=posts, user=user)
+    return render_template('users/user_posts.html', posts=posts, user=user)
 
 
 @users.route("/reset_password", methods=['GET', 'POST'])
@@ -92,7 +92,7 @@ def reset_request():
         send_reset_email(user)
         flash('Check your email for instructions on how to reset your password', 'info')
         return redirect(url_for('users.login'))
-    return render_template('reset_request.html', title='Reset Password', form=form)
+    return render_template('users/reset_request.html', title='Reset Password', form=form)
 
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
@@ -110,4 +110,4 @@ def reset_token(token):
         db.session.commit()
         flash('Password updated. You can now log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('reset_token.html', title='Reset Password', form=form)
+    return render_template('users/reset_token.html', title='Reset Password', form=form)
