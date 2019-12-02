@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<article class="media content-section">
+<article class="media content-section article article-light">
     <img src="{{ url_for('static', filename='profile_photos/' + post.author.photo_profile) }}" alt=""
         class="rounded-circle article-img">
     <div class="media-body">
@@ -10,12 +10,12 @@
             <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             {% if post.author == current_user %}
             <div>
-                <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="btn btn-secondary btn-sm mt-1 mb-1"><i class="fas fa-edit"></i> Edit</a>
+                <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="btn btn-sm mt-1 mb-1 edit-btn"><i class="fas fa-edit"></i> Edit</a>
                 <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i> Delete</button>
             </div>
             {% endif %}
         </div>
-        <h2 class="article-title">{{ post.title }}</h2>
+        <h2 class="article-title article-title-light">{{ post.title }}</h2>
         <p class="article-content">{{ post.content }}</p>
     </div>
 </article>
