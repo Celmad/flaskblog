@@ -1,3 +1,5 @@
+
+// ** DARK/LIGHT THEM IMPLEMENTATION **
 const THEME_TOGGLE = document.getElementById('theme-toggle');
 const BODY = document.body;
 const SIDEBAR_ITEMS = document.getElementsByClassName('sidebar-items');
@@ -12,6 +14,7 @@ THEME_TOGGLE.addEventListener('input', (e) => {
     const isChecked = e.target.checked;
     
 	if(isChecked) {
+        // Dark Theme
         BODY.classList.add('body-dark');
         BODY.classList.remove('body-light');
         THEME_ICON.classList.add('fa-moon');
@@ -35,8 +38,8 @@ THEME_TOGGLE.addEventListener('input', (e) => {
             sidebarItem.classList.add('sidebar-items-dark');
             sidebarItem.classList.remove('sidebar-items-light');
         }
-        
-	} else {
+	} else { 
+        // Light Theme
         BODY.classList.add('body-light');
         BODY.classList.remove('body-dark');
         THEME_ICON.classList.add('fa-sun');
@@ -62,3 +65,12 @@ THEME_TOGGLE.addEventListener('input', (e) => {
         }
 	}
 });
+
+// ** ACTIVE COLOURED NAVIGATION
+// const HOME_LINK = document.getElementById('home-link');
+// const NEW_POST_LINK = document.getElementById('new-post-link');
+// const ACCOUNT_LINK = document.getElementById('account-link');
+// const LOGOUT_LINK = document.getElementById('logout-link');
+// const ABOUT_LINK = document.getElementById('about-link');
+// const LOGIN_LINK = document.getElementById('login-link');
+// const REGISTER_LINK = document.getElementById('register-link');
